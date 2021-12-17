@@ -5,7 +5,7 @@
 template<typename T>
 Vector<T>::Vector() :
 	size_(0),
-	capacity_(10)
+	capacity_(1)
 {
 	array_ = new T[capacity_];
 }
@@ -69,7 +69,7 @@ Vector<T>::~Vector() {
 
 template<typename T>
 void Vector<T>::addMemory() {
-	capacity_ *= 4;
+	capacity_ *= 2;
 	T* tempArray = array_;
 	array_ = new T[capacity_];
 	for (size_t i = 0; i < size_; i++)
@@ -148,6 +148,19 @@ bool Vector<T>::operator== (const Vector<T>& other) {
 			return false;
 	}
 	return true;
+}
+
+template<typename T>
+bool Vector<T>::operator!= (const Vector<T>& other) {
+	if (size_ != other.size_)
+		return true;
+	bool isEqual = true;
+	for (size_t i = 0; i < size_; i++) {
+		isEqual = isEqual && (array_[i] == other.array_[i]);
+		if (!isEqual)
+			return true;
+	}
+	return false;
 }
 
 template<typename T>
