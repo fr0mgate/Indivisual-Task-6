@@ -1,9 +1,10 @@
 ﻿#include <iostream>
 #include <string>
 #include <stdexcept>
+#include <cstddef>
 #include <fstream>
 #include "splitString.h"
-#include "Vector.cpp"
+#include "Vector.h"
 #include "BankCard.h"
 
 int main()
@@ -99,6 +100,7 @@ int main()
         outputFile.close();
         return -1;
     }
+    std::cout << "\nПрограмма успещно выполнена, результат выведен в файл.";
 
     inputFile.close();
     outputFile.close();

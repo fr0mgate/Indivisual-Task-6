@@ -1,5 +1,4 @@
 #include "splitString.h"
-#include "Vector.cpp"
 
 Vector<std::string> splitString(const std::string& string, char divider) {
     Vector<std::string> stringsList;

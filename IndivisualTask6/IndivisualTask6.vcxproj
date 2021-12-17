@@ -141,7 +141,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="splitString.cpp" />
-    <ClCompile Include="Vector.cpp" />
     <ClCompile Include="BankCard.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

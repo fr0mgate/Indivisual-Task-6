@@ -1,5 +1,5 @@
 #include "String.h"
-#include "Vector.cpp"
+#include "Vector.h"
 
 String::String() :
 	charsVector_()
@@ -46,6 +46,22 @@ void String::pushBack(char element) {
 
 void String::clear() {
 	charsVector_.clear();
+}
+
+const char* String::toCharsArray() {
+	char charsArray[String::LIMIT];
+	for (size_t i = 0; i < charsVector_.size(); i++) {
+		charsArray[i] = charsVector_[i];
+	}
+	charsArray[charsVector_.size()] = '\0';
+	return charsArray;
+}
+
+String String::substr(size_t beginIndex, size_t endIndex) {
+	String subString;
+	for (size_t i = beginIndex; i < endIndex; i++)
+		subString.pushBack(charsVector_[i]);
+	return subString;
 }
 
 
@@ -100,8 +116,9 @@ char& String::operator[] (size_t index) const {
 }
 
 std::istream& operator>> (std::istream& input, String& string) {
-	char temp[String::INPUTLIM];
-	input.get(temp, String::INPUTLIM);
+	string.clear();
+	char temp[String::LIMIT];
+	input.get(temp, String::LIMIT);
 	if (input) {
 		size_t i = 0;
 		while (temp[i] != '\0') {
@@ -122,6 +139,10 @@ std::ostream& operator<< (std::ostream& output, const String& string) {
 
 bool String::operator== (const String& other) {
 	return charsVector_ == other.charsVector_;
+}
+
+bool String::operator!= (const String& other) {
+	return charsVector_ != other.charsVector_;
 }
 
 bool String::operator< (const String& other) {
