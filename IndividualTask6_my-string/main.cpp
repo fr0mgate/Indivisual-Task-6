@@ -1,4 +1,4 @@
-п»ї#include <iostream>
+#include <iostream>
 #include <string>
 #include <stdexcept>
 #include <fstream>
@@ -15,42 +15,42 @@ int main()
 
     try {
         std::string inputFileName, outputFileName;
-        std::cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ С„Р°Р№Р»Р° СЃ РІС…РѕРґРЅС‹РјРё РґР°РЅРЅС‹РјРё:\n";
+        std::cout << "Введите имя файла с входными данными:\n";
         std::cin >> inputFileName;
         if (std::cin.fail())
-            throw std::invalid_argument("РќРµ СѓРґР°Р»РѕСЃСЊ СЃС‡РёС‚Р°С‚СЊ РёРјСЏ С„Р°Р№Р»Р° СЃ РІС…РѕРґРЅС‹РјРё РґР°РЅРЅС‹РјРё!");
-        std::cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ С„Р°Р№Р»Р° СЃ РІС‹С…РѕРґРЅС‹РјРё РґР°РЅРЅС‹РјРё:\n";
+            throw std::invalid_argument("Не удалось считать имя файла с входными данными!");
+        std::cout << "Введите имя файла с выходными данными:\n";
         std::cin >> outputFileName;
         if (std::cin.fail())
-            throw std::invalid_argument("РќРµ СѓРґР°Р»РѕСЃСЊ СЃС‡РёС‚Р°С‚СЊ РёРјСЏ С„Р°Р№Р»Р° СЃ РІС‹С…РѕРґРЅС‹РјРё РґР°РЅРЅС‹РјРё!");
+            throw std::invalid_argument("Не удалось считать имя файла с выходными данными!");
 
         inputFile.open(inputFileName);
         if (!inputFile.is_open())
-            throw std::invalid_argument("РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р» СЃ РІС…РѕРґРЅС‹РјРё РґР°РЅРЅС‹РјРё!");
+            throw std::invalid_argument("Не удалось открыть файл с входными данными!");
         outputFile.open(outputFileName);
         if (!outputFile.is_open())
-            throw std::invalid_argument("РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р» СЃ РІС‹С…РѕРґРЅС‹РјРё РґР°РЅРЅС‹РјРё!");
+            throw std::invalid_argument("Не удалось открыть файл с выходными данными!");
 
         int entriesNum;
         inputFile >> entriesNum;
         inputFile.ignore(inputFile.rdbuf()->in_avail(), '\n');
         if (inputFile.fail())
-            throw std::invalid_argument("РќРµ СѓРґР°Р»РѕСЃСЊ СЃС‡РёС‚Р°С‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№!");
+            throw std::invalid_argument("Не удалось считать количество записей!");
         Vector<BankCard> bankCardsList;
         std::string entry;
         for (int i = 0; i < entriesNum; i++) {
             std::getline(inputFile, entry);
             Vector<std::string> entryData = splitString(entry);
             if (entryData.size() != 4)
-                throw std::invalid_argument("РЎС‚СЂРѕРєР° РґРѕР»Р¶РЅР° СЃРѕРґРµСЂР¶Р°С‚СЊ 4 Р·РЅР°С‡РµРЅРёСЏ!");
+                throw std::invalid_argument("Строка должна содержать 4 значения!");
             if (entryData[0].length() < 2 || entryData[0].length() > 10)
-                throw std::invalid_argument("РРјСЏ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РѕС‚ 2 РґРѕ 10 Р·РЅР°РєРѕРІ!");
+                throw std::invalid_argument("Имя должно быть от 2 до 10 знаков!");
             if (entryData[1].length() < 3 || entryData[1].length() > 15)
-                throw std::invalid_argument("Р¤Р°РјРёР»РёСЏ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РѕС‚ 3 РґРѕ 15 Р·РЅР°РєРѕРІ!");
+                throw std::invalid_argument("Фамилия должна быть от 3 до 15 знаков!");
             if (entryData[2].length() != 16)
-                throw std::invalid_argument("РќРѕРјРµСЂ РєР°СЂС‚С‹ РґРѕР»Р¶РµРЅ СЃРѕСЃС‚РѕСЏС‚СЊ РёР· 16 Р·РЅР°РєРѕРІ!");
+                throw std::invalid_argument("Номер карты должен состоять из 16 знаков!");
             if (entryData[3].length() != 5 && entryData[3][2] != '/')
-                throw std::invalid_argument("РЎСЂРѕРє РґРµР№СЃС‚РІРёСЏ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ Р·Р°РїРёСЃР°РЅ РІ С„РѕСЂРјР°С‚Рµ mm/yy!");
+                throw std::invalid_argument("Срок действия должен быть записан в формате mm/yy!");
 
             BankCard card(entryData[0], entryData[1], entryData[2], entryData[3].substr(0, 2),
                 entryData[3].substr(3));
@@ -65,7 +65,7 @@ int main()
             fullName.pushBack(bankCardsList[i].getHolderName());
             fullNamesList.pushBack(fullName);
         }
-        
+
         fullNamesList.selectionSort();
         int variousSurnamesCount = 0, equalFullNamesCount = 0;
         size_t i = 0;
@@ -89,12 +89,12 @@ int main()
             i = j;
         }
 
-        outputFile << "РљРѕР»РёС‡РµСЃС‚РІРѕ СЂР°Р·Р»РёС‡РЅС‹С… С„Р°РјРёР»РёР№: " << variousSurnamesCount
-            << "\nРљРѕР»РёС‡РµСЃС‚РІРѕ РѕРґРёРЅР°РєРѕРІС‹С… РїРѕР»РЅС‹С… РёРјС‘РЅ: " << equalFullNamesCount
-            << "\n\nРЎРїРёСЃРѕРє, РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ РјРµС‚РѕРґРѕРј РІС‹Р±РѕСЂР°:\n" << bankCardsList;
+        outputFile << "Количество различных фамилий: " << variousSurnamesCount
+            << "\nКоличество одинаковых полных имён: " << equalFullNamesCount
+            << "\n\nСписок, отсортированный методом выбора:\n" << bankCardsList;
     }
     catch (std::invalid_argument& e) {
-        std::cerr << '\n' << "РћС€РёР±РєР°: " << e.what() << '\n';
+        std::cerr << '\n' << "Ошибка: " << e.what() << '\n';
         inputFile.close();
         outputFile.close();
         return -1;
