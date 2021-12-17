@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <fstream>
 #include "String.h"
-#include "Vector.cpp"
+#include "Vector.h"
 #include "BankCard.h"
 #include "String.h"
 
@@ -41,7 +41,6 @@ int main()
         for (int i = 0; i < entriesNum; i++) {
             inputFile >> entry;
             Vector<String> entryData = entry.split();
-            std::cout << entryData;
             if (entryData.size() != 4)
                 throw std::invalid_argument("Строка должна содержать 4 значения!");
             if (entryData[0].length() < 2 || entryData[0].length() > 10)
@@ -100,6 +99,7 @@ int main()
         outputFile.close();
         return -1;
     }
+    std::cout << "\nПрограмма успещно выполнена, результат выведен в файл.";
 
     inputFile.close();
     outputFile.close();

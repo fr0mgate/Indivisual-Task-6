@@ -1,11 +1,11 @@
 #include "BankCard.h"
 
 BankCard::BankCard() :
-    holderName_("Name"),
-    holderSurname_("Surname"),
-    number_("0000000000000000"),
-    validityPeriodMounth_("01"),
-    validityPeriodYear_("01")
+    holderName_(""),
+    holderSurname_(""),
+    number_(""),
+    validityPeriodMounth_(""),
+    validityPeriodYear_("")
 {}
 
 BankCard::BankCard(const String& holderName, const String& holderSurname,

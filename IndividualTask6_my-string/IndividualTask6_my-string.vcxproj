@@ -22,7 +22,6 @@
     <ClCompile Include="BankCard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="String.cpp" />
-    <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="InputData.txt" />

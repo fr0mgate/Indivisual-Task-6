@@ -1,5 +1,5 @@
 #include "String.h"
-#include "Vector.cpp"
+#include "Vector.h"
 
 String::String() :
 	charsVector_()
@@ -116,6 +116,7 @@ char& String::operator[] (size_t index) const {
 }
 
 std::istream& operator>> (std::istream& input, String& string) {
+	string.clear();
 	char temp[String::LIMIT];
 	input.get(temp, String::LIMIT);
 	if (input) {

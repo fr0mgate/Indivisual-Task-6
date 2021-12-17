@@ -18,9 +18,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Vector.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="BankCard.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
