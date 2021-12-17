@@ -8,9 +8,9 @@ BankCard::BankCard() :
     validityPeriodYear_("01")
 {}
 
-BankCard::BankCard(const std::string& holderName, const std::string& holderSurname,
-    const std::string& number, const std::string& validityPeriodMounth,
-    const std::string& validityPeriodYear) :
+BankCard::BankCard(const String& holderName, const String& holderSurname,
+    const String& number, const String& validityPeriodMounth,
+    const String& validityPeriodYear) :
     holderName_(holderName),
     holderSurname_(holderSurname),
     number_(number),
@@ -29,31 +29,31 @@ const BankCard& BankCard::operator= (const BankCard& other) {
     return *this;
 }
 
-void BankCard::setHolderName(const std::string& holderName)
+void BankCard::setHolderName(const String& holderName)
 {
     holderName_ = holderName;
 }
 
-std::string BankCard::getHolderName() const
+String BankCard::getHolderName() const
 {
     return holderName_;
 }
 
-void BankCard::setHolderSurname(const std::string& holderSurname)
+void BankCard::setHolderSurname(const String& holderSurname)
 {
     holderSurname_ = holderSurname;
 }
 
-std::string BankCard::getHolderSurname() const
+String BankCard::getHolderSurname() const
 {
     return holderSurname_;
 }
 
-void BankCard::setNumber(const std::string& number) {
+void BankCard::setNumber(const String& number) {
     number_ = number;
 }
 
-std::string BankCard::getNumber() const {
+String BankCard::getNumber() const {
     return number_;
 }
 
@@ -61,19 +61,19 @@ char BankCard::getFinancialInstitutionTypeID() const {
     return number_[0];
 }
 
-void BankCard::setValidityPeriodMounth(const std::string& validityPeriodMounth) {
+void BankCard::setValidityPeriodMounth(const String& validityPeriodMounth) {
     validityPeriodMounth_ = validityPeriodMounth;
 }
 
-std::string BankCard::getValidityPeriodMounth() const {
+String BankCard::getValidityPeriodMounth() const {
     return validityPeriodMounth_;
 }
 
-void BankCard::setValidityPeriodYear(const std::string& validityPeriodYear) {
+void BankCard::setValidityPeriodYear(const String& validityPeriodYear) {
     validityPeriodYear_ = validityPeriodYear;
 }
 
-std::string BankCard::getValidityPeriodYear() const {
+String BankCard::getValidityPeriodYear() const {
     return validityPeriodYear_;
 }
 
@@ -90,6 +90,14 @@ bool BankCard::operator== (const BankCard& other) {
         && number_ == other.number_
         && validityPeriodMounth_ == other.validityPeriodMounth_
         && validityPeriodYear_ == other.validityPeriodYear_;
+}
+
+bool BankCard::operator!= (const BankCard& other) {
+    return !(holderName_ == other.holderName_
+        && holderSurname_ == other.holderSurname_
+        && number_ == other.number_
+        && validityPeriodMounth_ == other.validityPeriodMounth_
+        && validityPeriodYear_ == other.validityPeriodYear_);
 }
 
 bool BankCard::operator< (const BankCard& other) {

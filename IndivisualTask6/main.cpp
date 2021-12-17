@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 #include <stdexcept>
+#include <cstddef>
 #include <fstream>
 #include "splitString.h"
 #include "Vector.cpp"

@@ -1,44 +1,45 @@
 #ifndef BANK_CARD_H
 #define BANK_CARD_H
 
-#include <string>
+#include "String.h"
 #include <ostream>
 
 class BankCard
 {
 public:
     BankCard();
-    BankCard(const std::string&, const std::string&, const std::string&,
-        const std::string&, const std::string&);
+    BankCard(const String&, const String&, const String&,
+        const String&, const String&);
     const BankCard& operator= (const BankCard&);
 
-    void setHolderName(const std::string&);
-    std::string getHolderName() const;
-    void setHolderSurname(const std::string&);
-    std::string getHolderSurname() const;
+    void setHolderName(const String&);
+    String getHolderName() const;
+    void setHolderSurname(const String&);
+    String getHolderSurname() const;
 
-    void setNumber(const std::string&);
-    std::string getNumber() const;
+    void setNumber(const String&);
+    String getNumber() const;
     char getFinancialInstitutionTypeID() const;
 
-    void setValidityPeriodMounth(const std::string&);
-    std::string getValidityPeriodMounth() const;
-    void setValidityPeriodYear(const std::string&);
-    std::string getValidityPeriodYear() const;
+    void setValidityPeriodMounth(const String&);
+    String getValidityPeriodMounth() const;
+    void setValidityPeriodYear(const String&);
+    String getValidityPeriodYear() const;
 
     friend std::ostream& operator<< (std::ostream&, const BankCard&);
     bool operator== (const BankCard&);
+    bool operator!= (const BankCard&);
     bool operator< (const BankCard&);
     bool operator> (const BankCard&);
     bool operator<= (const BankCard&);
     bool operator>= (const BankCard&);
 
 private:
-    std::string holderName_;
-    std::string holderSurname_;
-    std::string number_;
-    std::string validityPeriodMounth_;
-    std::string validityPeriodYear_;
+    String holderName_;
+    String holderSurname_;
+    String number_;
+    String validityPeriodMounth_;
+    String validityPeriodYear_;
 };
 
 #endif // BANK_CARD_H

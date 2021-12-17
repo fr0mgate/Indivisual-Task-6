@@ -31,6 +31,7 @@ public:
     T& operator[] (size_t) const;
     friend std::ostream& operator<< <T>(std::ostream&, const Vector&);
     bool operator== (const Vector&);
+    bool operator!= (const Vector&);
     bool operator< (const Vector&);
     bool operator> (const Vector&);
     bool operator<= (const Vector&);

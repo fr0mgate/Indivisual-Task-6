@@ -1,8 +1,7 @@
 #include <iostream>
-#include <string>
 #include <stdexcept>
 #include <fstream>
-#include "splitString.h"
+#include "String.h"
 #include "Vector.cpp"
 #include "BankCard.h"
 #include "String.h"
@@ -15,7 +14,7 @@ int main()
     std::ofstream outputFile;
 
     try {
-        std::string inputFileName, outputFileName;
+        String inputFileName, outputFileName;
         std::cout << "Введите имя файла с входными данными:\n";
         std::cin >> inputFileName;
         if (std::cin.fail())
@@ -25,10 +24,10 @@ int main()
         if (std::cin.fail())
             throw std::invalid_argument("Не удалось считать имя файла с выходными данными!");
 
-        inputFile.open(inputFileName);
+        inputFile.open(inputFileName.toCharsArray());
         if (!inputFile.is_open())
             throw std::invalid_argument("Не удалось открыть файл с входными данными!");
-        outputFile.open(outputFileName);
+        outputFile.open(outputFileName.toCharsArray());
         if (!outputFile.is_open())
             throw std::invalid_argument("Не удалось открыть файл с выходными данными!");
 
@@ -38,10 +37,11 @@ int main()
         if (inputFile.fail())
             throw std::invalid_argument("Не удалось считать количество записей!");
         Vector<BankCard> bankCardsList;
-        std::string entry;
+        String entry;
         for (int i = 0; i < entriesNum; i++) {
-            std::getline(inputFile, entry);
-            Vector<std::string> entryData = splitString(entry);
+            inputFile >> entry;
+            Vector<String> entryData = entry.split();
+            std::cout << entryData;
             if (entryData.size() != 4)
                 throw std::invalid_argument("Строка должна содержать 4 значения!");
             if (entryData[0].length() < 2 || entryData[0].length() > 10)
@@ -54,14 +54,14 @@ int main()
                 throw std::invalid_argument("Срок действия должен быть записан в формате mm/yy!");
 
             BankCard card(entryData[0], entryData[1], entryData[2], entryData[3].substr(0, 2),
-                entryData[3].substr(3));
+                entryData[3].substr(3, 5));
             bankCardsList.pushBack(card);
         }
         bankCardsList.selectionSort();
 
-        Vector<Vector<std::string>> fullNamesList;
+        Vector<Vector<String>> fullNamesList;
         for (size_t i = 0; i < bankCardsList.size(); i++) {
-            Vector<std::string> fullName;
+            Vector<String> fullName;
             fullName.pushBack(bankCardsList[i].getHolderSurname());
             fullName.pushBack(bankCardsList[i].getHolderName());
             fullNamesList.pushBack(fullName);

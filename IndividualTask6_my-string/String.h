@@ -4,7 +4,6 @@
 #include <istream>
 #include <ostream>
 #include <cstddef>
-#include "Vector.h"
 
 class String
 {
@@ -19,6 +18,8 @@ public:
     [[nodiscard]] bool empty() const;
     void pushBack(char);
     void clear();
+    const char* toCharsArray();
+    String substr(size_t, size_t);
     Vector<String> split(char = ' ');
     Vector<String> split(const String&);
 
@@ -27,6 +28,7 @@ public:
     friend std::istream& operator>> (std::istream&, String&);
     friend std::ostream& operator<< (std::ostream&, const String&);
     bool operator== (const String&);
+    bool operator!= (const String&);
     bool operator< (const String&);
     bool operator> (const String&);
     bool operator<= (const String&);
@@ -34,7 +36,7 @@ public:
 
 private:
     Vector<char> charsVector_;
-    static const size_t INPUTLIM = 80;
+    static const size_t LIMIT = 80;
 };
 
 #endif // MY_STRING_H
