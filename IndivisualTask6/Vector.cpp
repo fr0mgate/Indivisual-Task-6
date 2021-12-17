@@ -11,7 +11,7 @@ Vector<T>::Vector() :
 }
 
 template<typename T>
-Vector<T>::Vector(Vector<T>& other) :
+Vector<T>::Vector(const Vector<T>& other) :
 	size_(other.size_),
 	capacity_(other.capacity_)
 {
@@ -83,10 +83,23 @@ template<typename T>
 }
 
 template<typename T>
+[[nodiscard]] bool Vector<T>::empty() const {
+	return size_ == 0;
+}
+
+template<typename T>
 void Vector<T>::pushBack(const T& element) {
 	if (size_ >= capacity_)
 		addMemory();
 	array_[size_++] = element;
+}
+
+template<typename T>
+void Vector<T>::clear() {
+	size_ = 0;
+	delete[] array_;
+	capacity_ = 1;
+	array_ = new T[capacity_];
 }
 
 template<typename T>
@@ -105,6 +118,13 @@ void Vector<T>::selectionSort() {
 
 template<typename T>
 T& Vector<T>::operator[] (size_t index) {
+	if (index < 0 || index >= size_)
+		throw std::invalid_argument("Индекс вне пределов вектора!");
+	return array_[index];
+}
+
+template<typename T>
+T& Vector<T>::operator[] (size_t index) const {
 	if (index < 0 || index >= size_)
 		throw std::invalid_argument("Индекс вне пределов вектора!");
 	return array_[index];

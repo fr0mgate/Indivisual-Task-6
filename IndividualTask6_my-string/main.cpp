@@ -5,6 +5,7 @@
 #include "splitString.h"
 #include "Vector.cpp"
 #include "BankCard.h"
+#include "String.h"
 
 int main()
 {

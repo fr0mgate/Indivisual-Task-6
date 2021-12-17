@@ -15,17 +15,20 @@ class Vector
 {
 public:
     Vector();
-    Vector(Vector&);
+    Vector(const Vector&);
     Vector(Vector&&) noexcept;
     const Vector& operator= (const Vector&);
     const Vector& operator=(Vector&&) noexcept;
     ~Vector();
 
     [[nodiscard]] size_t size() const;
+    [[nodiscard]] bool empty() const;
     void pushBack(const T&);
+    void clear();
     void selectionSort();
 
     T& operator[] (size_t);
+    T& operator[] (size_t) const;
     friend std::ostream& operator<< <T>(std::ostream&, const Vector&);
     bool operator== (const Vector&);
     bool operator< (const Vector&);

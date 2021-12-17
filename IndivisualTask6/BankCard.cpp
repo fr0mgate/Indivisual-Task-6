@@ -9,7 +9,7 @@ BankCard::BankCard() :
 {}
 
 BankCard::BankCard(const std::string& holderName, const std::string& holderSurname,
-    const std::string& number, const std::string& validityPeriodMounth, 
+    const std::string& number, const std::string& validityPeriodMounth,
     const std::string& validityPeriodYear) :
     holderName_(holderName),
     holderSurname_(holderSurname),

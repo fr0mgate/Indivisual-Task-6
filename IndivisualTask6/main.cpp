@@ -65,7 +65,7 @@ int main()
             fullName.pushBack(bankCardsList[i].getHolderName());
             fullNamesList.pushBack(fullName);
         }
-        
+
         fullNamesList.selectionSort();
         int variousSurnamesCount = 0, equalFullNamesCount = 0;
         size_t i = 0;
