@@ -15,7 +15,7 @@ class Vector
 {
 public:
     Vector();
-    Vector(Vector&);
+    Vector(const Vector&);
     Vector(Vector&&) noexcept;
     const Vector& operator= (const Vector&);
     const Vector& operator=(Vector&&) noexcept;

@@ -11,7 +11,7 @@ Vector<T>::Vector() :
 }
 
 template<typename T>
-Vector<T>::Vector(Vector<T>& other) :
+Vector<T>::Vector(const Vector<T>& other) :
 	size_(other.size_),
 	capacity_(other.capacity_)
 {
