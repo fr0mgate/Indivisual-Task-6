@@ -22,6 +22,7 @@
     <ClCompile Include="BankCard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="splitString.cpp" />
+    <ClCompile Include="String.cpp" />
     <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +32,7 @@
   <ItemGroup>
     <ClInclude Include="BankCard.h" />
     <ClInclude Include="splitString.h" />
+    <ClInclude Include="String.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

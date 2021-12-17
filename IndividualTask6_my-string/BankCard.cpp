@@ -119,13 +119,6 @@ bool BankCard::operator> (const BankCard& other) {
 }
 
 bool BankCard::operator<= (const BankCard& other) {
-    if (holderName_ == other.holderName_
-        && holderSurname_ == other.holderSurname_
-        && number_ == other.number_
-        && validityPeriodMounth_ == other.validityPeriodMounth_
-        && validityPeriodYear_ == other.validityPeriodYear_) {
-        return true;
-    }
     if (holderName_ != other.holderName_)
         return holderName_ < other.holderName_;
     if (holderSurname_ != other.holderSurname_)
@@ -134,18 +127,12 @@ bool BankCard::operator<= (const BankCard& other) {
         return number_ < other.number_;
     if (validityPeriodMounth_ != other.validityPeriodMounth_)
         return validityPeriodMounth_ < other.validityPeriodMounth_;
-    else
+    if (validityPeriodYear_ != other.validityPeriodYear_)
         return validityPeriodYear_ < other.validityPeriodYear_;
+    return true;
 }
 
 bool BankCard::operator>= (const BankCard& other) {
-    if (holderName_ == other.holderName_
-        && holderSurname_ == other.holderSurname_
-        && number_ == other.number_
-        && validityPeriodMounth_ == other.validityPeriodMounth_
-        && validityPeriodYear_ == other.validityPeriodYear_) {
-        return true;
-    }
     if (holderName_ != other.holderName_)
         return holderName_ > other.holderName_;
     if (holderSurname_ != other.holderSurname_)
@@ -154,6 +141,7 @@ bool BankCard::operator>= (const BankCard& other) {
         return number_ > other.number_;
     if (validityPeriodMounth_ != other.validityPeriodMounth_)
         return validityPeriodMounth_ > other.validityPeriodMounth_;
-    else
+    if (validityPeriodYear_ != other.validityPeriodYear_)
         return validityPeriodYear_ > other.validityPeriodYear_;
+    return true;
 }

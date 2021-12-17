@@ -3,7 +3,6 @@
 
 #include <ostream>
 #include <cstddef>
-#include <stdexcept>
 
 template<typename T>
 class Vector;
@@ -14,7 +13,6 @@ std::ostream& operator<< (std::ostream&, const Vector<T>&);
 template<typename T>
 class Vector
 {
-
 public:
     Vector();
     Vector(Vector&);

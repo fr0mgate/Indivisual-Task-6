@@ -59,7 +59,7 @@ int main()
         bankCardsList.selectionSort();
 
         Vector<Vector<std::string>> fullNamesList;
-        for (size_t i = 0; i < bankCardsList.size() - 1; i++) {
+        for (size_t i = 0; i < bankCardsList.size(); i++) {
             Vector<std::string> fullName;
             fullName.pushBack(bankCardsList[i].getHolderSurname());
             fullName.pushBack(bankCardsList[i].getHolderName());

@@ -1,4 +1,6 @@
 #include "Vector.h"
+#include <stdexcept>
+#include <algorithm>
 
 template<typename T>
 Vector<T>::Vector() :
@@ -130,60 +132,40 @@ bool Vector<T>::operator== (const Vector<T>& other) {
 
 template<typename T>
 bool Vector<T>::operator< (const Vector<T>& other) {
-	if (size_ != other.size_)
-		return size_ < other.size_;
-	for (size_t i = 0; i < size_ - 1; i++) {
+	size_t minSize = std::min(size_, other.size_);
+	for (size_t i = 0; i < minSize; i++) {
 		if (array_[i] != other.array_[i])
 			return array_[i] < other.array_[i];
 	}
-	return array_[size_ - 1] < other.array_[size_ - 1];
+	return size_ < other.size_;
 }
 
 template<typename T>
 bool Vector<T>::operator> (const Vector<T>& other) {
-	if (size_ != other.size_)
-		return size_ > other.size_;
-	for (size_t i = 0; i < size_ - 1; i++) {
+	size_t minSize = std::min(size_, other.size_);
+	for (size_t i = 0; i < minSize; i++) {
 		if (array_[i] != other.array_[i])
 			return array_[i] > other.array_[i];
 	}
-	return array_[size_ - 1] > other.array_[size_ - 1];
+	return size_ > other.size_;
 }
 
 template<typename T>
 bool Vector<T>::operator<= (const Vector<T>& other) {
-	if (size_ != other.size_)
-		return size_ < other.size_;
-	bool isEqual = true;
-	for (size_t i = 0; i < size_; i++) {
-		isEqual = isEqual && (array_[i] == other.array_[i]);
-		if (!isEqual)
-			break;
-	}
-	if (isEqual)
-		return true;
-	for (size_t i = 0; i < size_ - 1; i++) {
+	size_t minSize = std::min(size_, other.size_);
+	for (size_t i = 0; i < minSize; i++) {
 		if (array_[i] != other.array_[i])
 			return array_[i] < other.array_[i];
 	}
-	return array_[size_ - 1] < other.array_[size_ - 1];
+	return size_ == other.size_;
 }
 
 template<typename T>
 bool Vector<T>::operator>= (const Vector<T>& other) {
-	if (size_ != other.size_)
-		return size_ > other.size_;
-	bool isEqual = true;
-	for (size_t i = 0; i < size_; i++) {
-		isEqual = isEqual && (array_[i] == other.array_[i]);
-		if (!isEqual)
-			break;
-	}
-	if (isEqual)
-		return true;
-	for (size_t i = 0; i < size_ - 1; i++) {
+	size_t minSize = std::min(size_, other.size_);
+	for (size_t i = 0; i < minSize; i++) {
 		if (array_[i] != other.array_[i])
 			return array_[i] > other.array_[i];
 	}
-	return array_[size_ - 1] > other.array_[size_ - 1];
+	return size_ == other.size_;
 }
