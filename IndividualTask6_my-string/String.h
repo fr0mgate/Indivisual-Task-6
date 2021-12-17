@@ -4,6 +4,7 @@
 #include <istream>
 #include <ostream>
 #include <cstddef>
+#include "Vector.h"
 
 class String
 {

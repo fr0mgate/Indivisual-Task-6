@@ -1,8 +1,8 @@
 #ifndef BANK_CARD_H
 #define BANK_CARD_H
 
-#include "String.h"
 #include <ostream>
+#include "String.h"
 
 class BankCard
 {
