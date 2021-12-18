@@ -40,18 +40,20 @@ int main()
         Vector<BankCard> bankCardsList;
         std::string entry;
         for (int i = 0; i < entriesNum; i++) {
+            if (inputFile.eof())
+                throw std::invalid_argument("Записей меньше, чем указано!");
             std::getline(inputFile, entry);
             Vector<std::string> entryData = splitString(entry);
             if (entryData.size() != 4)
                 throw std::invalid_argument("Строка должна содержать 4 значения!");
             if (entryData[0].length() < 2 || entryData[0].length() > 10)
-                throw std::invalid_argument("Имя должно быть от 2 до 10 знаков!");
+                throw std::invalid_argument("Имя должно содержать от 2 до 10 знаков!");
             if (entryData[1].length() < 3 || entryData[1].length() > 15)
-                throw std::invalid_argument("Фамилия должна быть от 3 до 15 знаков!");
+                throw std::invalid_argument("Фамилия должна содержать от 3 до 15 знаков!");
             if (entryData[2].length() != 16)
                 throw std::invalid_argument("Номер карты должен состоять из 16 знаков!");
             if (entryData[3].length() != 5 && entryData[3][2] != '/')
-                throw std::invalid_argument("Срок действия должен быть записан в формате mm/yy!");
+                throw std::invalid_argument("Срок действия должен быть записан в формате \"mm/yy\"!");
 
             BankCard card(entryData[0], entryData[1], entryData[2], entryData[3].substr(0, 2),
                 entryData[3].substr(3));
@@ -76,9 +78,11 @@ int main()
                 if (fullNamesList[i][0] == fullNamesList[j][0]) {
                     if (fullNamesList[i][1] == fullNamesList[j][1]) {
                         equalFullNamesCount++;
-                        if (j = i + 1)
+                        if (j == i + 1)
                             equalFullNamesCount++;
                     }
+                    else
+                        break;
                 }
                 else {
                     variousSurnamesCount++;
@@ -92,7 +96,8 @@ int main()
 
         outputFile << "Количество различных фамилий: " << variousSurnamesCount
             << "\nКоличество одинаковых полных имён: " << equalFullNamesCount
-            << "\n\nСписок, отсортированный методом выбора:\n" << bankCardsList;
+            << "\n\nСписок, отсортированный методом выбора (" 
+            << entriesNum << " записей):\n" << bankCardsList;
     }
     catch (std::invalid_argument& e) {
         std::cerr << '\n' << "Ошибка: " << e.what() << '\n';
@@ -100,7 +105,7 @@ int main()
         outputFile.close();
         return -1;
     }
-    std::cout << "\nПрограмма успещно выполнена, результат выведен в файл.";
+    std::cout << "\nПрограмма успешно выполнена, результат выведен в файл.";
 
     inputFile.close();
     outputFile.close();
