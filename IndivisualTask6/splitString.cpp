@@ -1,6 +1,7 @@
 #include "splitString.h"
 
-Vector<std::string> splitString(const std::string& string, char divider) {
+Vector<std::string> splitString(const std::string& string, char divider)
+{
     Vector<std::string> stringsList;
     std::string temp;
     for (size_t i = 0; i < string.length(); i++) {
@@ -18,7 +19,8 @@ Vector<std::string> splitString(const std::string& string, char divider) {
     return stringsList;
 }
 
-Vector<std::string> splitString(const std::string& string, const std::string& dividers) {
+Vector<std::string> splitString(const std::string& string, const std::string& dividers)
+{
     Vector<std::string> stringsList;
     std::string temp;
     bool isDivider = false;

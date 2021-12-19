@@ -18,7 +18,8 @@ BankCard::BankCard(const String& holderName, const String& holderSurname,
     validityPeriodYear_(validityPeriodYear)
 {}
 
-const BankCard& BankCard::operator= (const BankCard& other) {
+const BankCard& BankCard::operator= (const BankCard& other)
+{
     if (this != &other) {
         holderName_ = other.holderName_;
         holderSurname_ = other.holderSurname_;
@@ -61,30 +62,36 @@ char BankCard::getFinancialInstitutionTypeID() const {
     return number_[0];
 }
 
-void BankCard::setValidityPeriodMounth(const String& validityPeriodMounth) {
+void BankCard::setValidityPeriodMounth(const String& validityPeriodMounth)
+{
     validityPeriodMounth_ = validityPeriodMounth;
 }
 
-String BankCard::getValidityPeriodMounth() const {
+String BankCard::getValidityPeriodMounth() const
+{
     return validityPeriodMounth_;
 }
 
-void BankCard::setValidityPeriodYear(const String& validityPeriodYear) {
+void BankCard::setValidityPeriodYear(const String& validityPeriodYear)
+{
     validityPeriodYear_ = validityPeriodYear;
 }
 
-String BankCard::getValidityPeriodYear() const {
+String BankCard::getValidityPeriodYear() const
+{
     return validityPeriodYear_;
 }
 
-std::ostream& operator<< (std::ostream& output, const BankCard& card) {
+std::ostream& operator<< (std::ostream& output, const BankCard& card)
+{
     output << card.holderName_ << ' ' << card.holderSurname_ << ' ' << card.number_
         << ' ' << card.validityPeriodMounth_ << '/' << card.validityPeriodYear_;
 
     return output;
 }
 
-bool BankCard::operator== (const BankCard& other) {
+bool BankCard::operator== (const BankCard& other)
+{
     return holderName_ == other.holderName_
         && holderSurname_ == other.holderSurname_
         && number_ == other.number_
@@ -92,7 +99,8 @@ bool BankCard::operator== (const BankCard& other) {
         && validityPeriodYear_ == other.validityPeriodYear_;
 }
 
-bool BankCard::operator!= (const BankCard& other) {
+bool BankCard::operator!= (const BankCard& other)
+{
     return !(holderName_ == other.holderName_
         && holderSurname_ == other.holderSurname_
         && number_ == other.number_
@@ -100,7 +108,8 @@ bool BankCard::operator!= (const BankCard& other) {
         && validityPeriodYear_ == other.validityPeriodYear_);
 }
 
-bool BankCard::operator< (const BankCard& other) {
+bool BankCard::operator< (const BankCard& other)
+{
     if (holderName_ != other.holderName_)
         return holderName_ < other.holderName_;
     if (holderSurname_ != other.holderSurname_)
@@ -113,7 +122,8 @@ bool BankCard::operator< (const BankCard& other) {
         return validityPeriodYear_ < other.validityPeriodYear_;
 }
 
-bool BankCard::operator> (const BankCard& other) {
+bool BankCard::operator> (const BankCard& other)
+{
     if (holderName_ != other.holderName_)
         return holderName_ > other.holderName_;
     if (holderSurname_ != other.holderSurname_)
@@ -126,7 +136,8 @@ bool BankCard::operator> (const BankCard& other) {
         return validityPeriodYear_ > other.validityPeriodYear_;
 }
 
-bool BankCard::operator<= (const BankCard& other) {
+bool BankCard::operator<= (const BankCard& other)
+{
     if (holderName_ != other.holderName_)
         return holderName_ < other.holderName_;
     if (holderSurname_ != other.holderSurname_)
@@ -140,7 +151,8 @@ bool BankCard::operator<= (const BankCard& other) {
     return true;
 }
 
-bool BankCard::operator>= (const BankCard& other) {
+bool BankCard::operator>= (const BankCard& other)
+{
     if (holderName_ != other.holderName_)
         return holderName_ > other.holderName_;
     if (holderSurname_ != other.holderSurname_)

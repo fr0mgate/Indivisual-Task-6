@@ -65,7 +65,8 @@ Vector<T>::Vector(const Vector<T>& other) :
 }
 
 template<typename T>
-Vector<T>::Vector(Vector<T>&& other) noexcept {
+Vector<T>::Vector(Vector<T>&& other) noexcept
+{
 	if (this != &other) {
 		delete[] array_;
 		array_ = other.array_;
@@ -78,7 +79,8 @@ Vector<T>::Vector(Vector<T>&& other) noexcept {
 }
 
 template<typename T>
-const Vector<T>& Vector<T>::operator= (const Vector<T>& other) {
+const Vector<T>& Vector<T>::operator= (const Vector<T>& other)
+{
 	if (this != &other) {
 		if (capacity_ != other.capacity_) {
 			delete[] array_;
@@ -93,7 +95,8 @@ const Vector<T>& Vector<T>::operator= (const Vector<T>& other) {
 }
 
 template<typename T>
-const Vector<T>& Vector<T>::operator= (Vector<T>&& other) noexcept {
+const Vector<T>& Vector<T>::operator= (Vector<T>&& other) noexcept
+{
 	if (this != &other) {
 		delete[] array_;
 		array_ = other.array_;
@@ -107,12 +110,14 @@ const Vector<T>& Vector<T>::operator= (Vector<T>&& other) noexcept {
 }
 
 template<typename T>
-Vector<T>::~Vector() {
+Vector<T>::~Vector()
+{
 	delete[] array_;
 }
 
 template<typename T>
-void Vector<T>::addMemory() {
+void Vector<T>::addMemory()
+{
 	capacity_ *= 4;
 	T* tempArray = array_;
 	array_ = new T[capacity_];
@@ -122,24 +127,28 @@ void Vector<T>::addMemory() {
 }
 
 template<typename T>
-[[nodiscard]] size_t Vector<T>::size() const {
+[[nodiscard]] size_t Vector<T>::size() const
+{
 	return size_;
 }
 
 template<typename T>
-[[nodiscard]] bool Vector<T>::empty() const {
+[[nodiscard]] bool Vector<T>::empty() const
+{
 	return size_ == 0;
 }
 
 template<typename T>
-void Vector<T>::pushBack(const T& element) {
+void Vector<T>::pushBack(const T& element)
+{
 	if (size_ >= capacity_)
 		addMemory();
 	array_[size_++] = element;
 }
 
 template<typename T>
-void Vector<T>::clear() {
+void Vector<T>::clear()
+{
 	size_ = 0;
 	delete[] array_;
 	capacity_ = 1;
@@ -147,7 +156,8 @@ void Vector<T>::clear() {
 }
 
 template<typename T>
-void Vector<T>::selectionSort() {
+void Vector<T>::selectionSort()
+{
 	size_t min_index;
 	for (size_t i = 0; i < size_ - 1; i++) {
 		min_index = i;
@@ -161,28 +171,32 @@ void Vector<T>::selectionSort() {
 }
 
 template<typename T>
-T& Vector<T>::operator[] (size_t index) {
+T& Vector<T>::operator[] (size_t index)
+{
 	if (index < 0 || index >= size_)
 		throw std::invalid_argument("Индекс вне пределов вектора!");
 	return array_[index];
 }
 
 template<typename T>
-T& Vector<T>::operator[] (size_t index) const {
+T& Vector<T>::operator[] (size_t index) const
+{
 	if (index < 0 || index >= size_)
 		throw std::invalid_argument("Индекс вне пределов вектора!");
 	return array_[index];
 }
 
 template<typename T>
-std::ostream& operator<< (std::ostream& output, const Vector<T>& vector) {
+std::ostream& operator<< (std::ostream& output, const Vector<T>& vector)
+{
 	for (size_t i = 0; i < vector.size_; i++)
 		output << vector.array_[i] << '\n';
 	return output;
 }
 
 template<typename T>
-bool Vector<T>::operator== (const Vector<T>& other) {
+bool Vector<T>::operator== (const Vector<T>& other)
+{
 	if (size_ != other.size_)
 		return false;
 	bool isEqual = true;
@@ -195,7 +209,8 @@ bool Vector<T>::operator== (const Vector<T>& other) {
 }
 
 template<typename T>
-bool Vector<T>::operator< (const Vector<T>& other) {
+bool Vector<T>::operator< (const Vector<T>& other)
+{
 	size_t minSize = std::min(size_, other.size_);
 	for (size_t i = 0; i < minSize; i++) {
 		if (array_[i] != other.array_[i])
@@ -205,7 +220,8 @@ bool Vector<T>::operator< (const Vector<T>& other) {
 }
 
 template<typename T>
-bool Vector<T>::operator> (const Vector<T>& other) {
+bool Vector<T>::operator> (const Vector<T>& other)
+{
 	size_t minSize = std::min(size_, other.size_);
 	for (size_t i = 0; i < minSize; i++) {
 		if (array_[i] != other.array_[i])
@@ -215,7 +231,8 @@ bool Vector<T>::operator> (const Vector<T>& other) {
 }
 
 template<typename T>
-bool Vector<T>::operator<= (const Vector<T>& other) {
+bool Vector<T>::operator<= (const Vector<T>& other)
+{
 	size_t minSize = std::min(size_, other.size_);
 	for (size_t i = 0; i < minSize; i++) {
 		if (array_[i] != other.array_[i])
@@ -225,7 +242,8 @@ bool Vector<T>::operator<= (const Vector<T>& other) {
 }
 
 template<typename T>
-bool Vector<T>::operator>= (const Vector<T>& other) {
+bool Vector<T>::operator>= (const Vector<T>& other)
+{
 	size_t minSize = std::min(size_, other.size_);
 	for (size_t i = 0; i < minSize; i++) {
 		if (array_[i] != other.array_[i])

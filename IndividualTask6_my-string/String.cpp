@@ -9,7 +9,8 @@ String::String(const String& other) :
 	charsVector_(other.charsVector_)
 {}
 
-String::String(const char* charsArray) {
+String::String(const char* charsArray)
+{
 	size_t i = 0;
 	while (charsArray[i] != '\0') {
 		charsVector_.pushBack(charsArray[i]);
@@ -17,13 +18,15 @@ String::String(const char* charsArray) {
 	}
 }
 
-const String& String::operator= (const String& other) {
+const String& String::operator= (const String& other)
+{
 	if (this != &other)
 		charsVector_ = other.charsVector_;
 	return *this;
 }
 
-const String& String::operator= (const char* charsArray) {
+const String& String::operator= (const char* charsArray)
+{
 	size_t i = 0;
 	while (charsArray[i] != '\0') {
 		charsVector_.pushBack(charsArray[i]);
@@ -32,23 +35,28 @@ const String& String::operator= (const char* charsArray) {
 	return *this;
 }
 
-[[nodiscard]] size_t String::length() const {
+[[nodiscard]] size_t String::length() const
+{
 	return charsVector_.size();
 }
 
-[[nodiscard]] bool String::empty() const {
+[[nodiscard]] bool String::empty() const
+{
 	return charsVector_.empty();
 }
 
-void String::pushBack(char element) {
+void String::pushBack(char element)
+{
 	charsVector_.pushBack(element);
 }
 
-void String::clear() {
+void String::clear()
+{
 	charsVector_.clear();
 }
 
-const char* String::toCharsArray() {
+const char* String::toCharsArray()
+{
 	char charsArray[String::LIMIT];
 	for (size_t i = 0; i < charsVector_.size(); i++) {
 		charsArray[i] = charsVector_[i];
@@ -57,7 +65,8 @@ const char* String::toCharsArray() {
 	return charsArray;
 }
 
-String String::substr(size_t beginIndex, size_t endIndex) {
+String String::substr(size_t beginIndex, size_t endIndex)
+{
 	String subString;
 	for (size_t i = beginIndex; i < endIndex; i++)
 		subString.pushBack(charsVector_[i]);
@@ -65,7 +74,8 @@ String String::substr(size_t beginIndex, size_t endIndex) {
 }
 
 
-Vector<String> String::split(char divider) {
+Vector<String> String::split(char divider)
+{
 	Vector<String> stringsList;
 	String temp;
 	for (size_t i = 0; i < charsVector_.size(); i++) {
@@ -83,7 +93,8 @@ Vector<String> String::split(char divider) {
 	return stringsList;
 }
 
-Vector<String> String::split(const String& dividers) {
+Vector<String> String::split(const String& dividers)
+{
 	Vector<String> stringsList;
 	String temp;
 	bool isDivider = false;
@@ -107,15 +118,18 @@ Vector<String> String::split(const String& dividers) {
 	return stringsList;
 }
 
-char& String::operator[] (size_t index) {
+char& String::operator[] (size_t index)
+{
 	return charsVector_[index];
 }
 
-char& String::operator[] (size_t index) const {
+char& String::operator[] (size_t index) const
+{
 	return charsVector_[index];
 }
 
-std::istream& operator>> (std::istream& input, String& string) {
+std::istream& operator>> (std::istream& input, String& string)
+{
 	string.clear();
 	char temp[String::LIMIT];
 	input.get(temp, String::LIMIT);
@@ -131,32 +145,39 @@ std::istream& operator>> (std::istream& input, String& string) {
 	return input;
 }
 
-std::ostream& operator<< (std::ostream& output, const String& string) {
+std::ostream& operator<< (std::ostream& output, const String& string)
+{
 	for (size_t i = 0; i < string.charsVector_.size(); i++)
 		output << string.charsVector_[i];
 	return output;
 }
 
-bool String::operator== (const String& other) {
+bool String::operator== (const String& other)
+{
 	return charsVector_ == other.charsVector_;
 }
 
-bool String::operator!= (const String& other) {
+bool String::operator!= (const String& other)
+{
 	return charsVector_ != other.charsVector_;
 }
 
-bool String::operator< (const String& other) {
+bool String::operator< (const String& other)
+{
 	return charsVector_ < other.charsVector_;
 }
 
-bool String::operator> (const String& other) {
+bool String::operator> (const String& other)
+{
 	return charsVector_ > other.charsVector_;
 }
 
-bool String::operator<= (const String& other) {
+bool String::operator<= (const String& other)
+{
 	return charsVector_ <= other.charsVector_;
 }
 
-bool String::operator>= (const String& other) {
+bool String::operator>= (const String& other)
+{
 	return charsVector_ >= other.charsVector_;
 }
